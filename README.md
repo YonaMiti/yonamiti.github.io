@@ -1,5 +1,4 @@
 # yonamiti.github.io
-//My Graphics Design and Web Development Portfolio
 
 <!DOCTYPE html>
 <html lang="en">
