@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yona Miti - Creative Designer & Developer</title>
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #ec4899;
-            --dark-bg: #0f172a;
-            --light-bg: #f8fafc;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -24,9 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: #ffffff;
+            color: #1e293b;
+            background: #fff;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -36,12 +25,13 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #e2e8f0;
             padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -49,95 +39,239 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0rem;
+            align-items: center;
         }
 
-        .nav-links a {
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
             text-decoration: none;
-            color: var(--text-primary);
+            color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            display: block;
+            transition: all 0.3s ease;
             font-weight: 500;
-            transition: color 0.3s ease;
-            cursor: pointer;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1.2rem;
+            right: 1.2rem;
+            height: 2px;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
         }
 
-        .nav-links a.active {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.25rem;
+        .nav-item > a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-width: 350px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: #1e293b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-menu a:first-child {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-left-color: #6366f1;
+            transform: translateX(5px);
+        }
+
+        .dropdown-menu a .icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 2rem;
+            text-align: center;
+        }
+
+        .dropdown-menu a .text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-menu a .title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .dropdown-menu a .description {
+            font-size: 0.8rem;
+            color: #64748b;
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 4rem 2rem;
             text-align: center;
-            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,128C672,128,768,160,864,165.3C960,171,1056,149,1152,144C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: slideUp 1s ease;
+            max-width: 800px;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
+            font-weight: 900;
             margin-bottom: 1rem;
-            animation: slideDown 0.8s ease;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .hero-content .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
             opacity: 0.95;
-            animation: slideUp 0.8s ease 0.2s both;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: var(--primary-color);
-            padding: 0.8rem 2rem;
+        .hero-content .tagline {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.85;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
             border-radius: 50px;
-            text-decoration: none;
+            border: 2px solid white;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            border: none;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
             font-size: 1rem;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .btn-primary {
+            background: white;
+            color: #667eea;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -145,248 +279,204 @@
             }
         }
 
-        /* Sections */
-        .section {
-            display: none;
-            padding: 4rem 2rem;
-            max-width: 1200px;
+        /* Portfolio Preview Section */
+        .explore-section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
-            min-height: calc(100vh - 60px);
-            animation: fadeIn 0.5s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
         }
 
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            font-weight: 800;
             text-align: center;
-            color: var(--primary-color);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Portfolio Grid */
-        .portfolio-grid {
+        .section-desc {
+            text-align: center;
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
 
-        .portfolio-card {
+        .work-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            border: 1px solid #e2e8f0;
         }
 
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        .work-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
-        .card-image {
+        .work-card-image {
             width: 100%;
-            height: 200px;
+            height: 300px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3rem;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card-content {
-            padding: 1.5rem;
+        .work-card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
+        .work-card:hover .work-card-image::after {
+            opacity: 1;
         }
 
-        .card-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+        .work-card-content {
+            padding: 2rem;
         }
 
-        .card-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+        .work-card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
         }
 
-        .tag {
-            background: var(--light-bg);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .skill-item {
-            padding: 1rem;
-            background: var(--light-bg);
-            border-radius: 8px;
-            font-weight: 500;
-            color: var(--primary-color);
-        }
-
-        /* Contact Section */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
+        .work-card-desc {
+            color: #64748b;
             margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+        .work-link {
+            display: inline-block;
+            color: #6366f1;
+            text-decoration: none;
             font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
-        .submit-btn:hover {
-            background: var(--secondary-color);
+        .work-link:hover {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            border-color: transparent;
+            transform: translateX(3px);
         }
 
         /* Footer */
         footer {
-            background: var(--dark-bg);
+            background: #0f172a;
             color: white;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
         }
 
         .footer-content {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
 
-        .social-links a {
-            color: white;
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
             transition: color 0.3s ease;
         }
 
-        .social-links a:hover {
-            color: var(--primary-color);
+        .footer-section a:hover {
+            color: #6366f1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 2rem 1rem;
+            .hero-content .subtitle {
+                font-size: 1.3rem;
             }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
-            .portfolio-grid {
+            .nav-links {
+                gap: 0rem;
+            }
+
+            .nav-item > a {
+                padding: 0.8rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .dropdown-menu {
+                min-width: 280px;
+                left: -140px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .work-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                text-align: center;
             }
         }
     </style>
@@ -397,423 +487,104 @@
         <div class="nav-container">
             <a href="#" class="logo">YM</a>
             <ul class="nav-links">
-                <li><a onclick="showSection('home')" class="nav-link active">Home</a></li>
-                <li><a onclick="showSection('logo')" class="nav-link">Logo Design</a></li>
-                <li><a onclick="showSection('book')" class="nav-link">Book Layout</a></li>
-                <li><a onclick="showSection('static')" class="nav-link">Static Design</a></li>
-                <li><a onclick="showSection('illustrations')" class="nav-link">Illustrations</a></li>
-                <li><a onclick="showSection('motion')" class="nav-link">Motion Graphics</a></li>
-                <li><a onclick="showSection('video')" class="nav-link">Video</a></li>
-                <li><a onclick="showSection('web')" class="nav-link">Web Development</a></li>
-                <li><a onclick="showSection('branding')" class="nav-link">Branding</a></li>
-                <li><a onclick="showSection('contact')" class="nav-link">Contact</a></li>
+                <li class="nav-item">
+                    <a href="#work">Explore My Work</a>
+                    <div class="dropdown-menu">
+                        <a href="#graphics">
+                            <span class="icon">🎨</span>
+                            <span class="text">
+                                <span class="title">Graphics Design</span>
+                                <span class="description">Logos, branding, visuals</span>
+                            </span>
+                        </a>
+                        <a href="#web">
+                            <span class="icon">💻</span>
+                            <span class="text">
+                                <span class="title">Web Development</span>
+                                <span class="description">Websites, apps, UI/UX</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact">Contact Me</a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <div id="home" class="section active">
-        <div class="hero">
-            <div class="hero-content">
-                <h1>Yona Miti</h1>
-                <p>Creative Designer, Developer & Brand Strategist</p>
-                <p style="font-size: 1rem; opacity: 0.85; margin-top: -1rem;">Crafting compelling visual identities and digital experiences</p>
-                <button class="cta-button" onclick="showSection('portfolio')">Explore My Work</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Yona Miti</h1>
+            <p class="subtitle">Creative Designer & Developer</p>
+            <p class="tagline">Crafting Digital Experiences That Inspire</p>
+            <div class="cta-buttons">
+                <a href="#graphics" class="btn btn-primary">Graphics Design</a>
+                <a href="#web" class="btn btn-secondary">Web Development</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Logo Design Section -->
-    <div id="logo" class="section">
-        <h2 class="section-title">Logo Design</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">🎯</div>
-                <div class="card-content">
-                    <h3 class="card-title">Brand Identity System</h3>
-                    <p class="card-description">Comprehensive logo design with brand guidelines and variations</p>
-                    <div class="card-tags">
-                        <span class="tag">Logo</span>
-                        <span class="tag">Branding</span>
-                    </div>
+    <!-- Work Section -->
+    <section class="explore-section" id="work">
+        <h2 class="section-title">Explore My Work</h2>
+        <p class="section-desc">Choose what you'd like to explore</p>
+        
+        <div class="work-grid">
+            <!-- Graphics Design Card -->
+            <div class="work-card" id="graphics">
+                <div class="work-card-image">🎨</div>
+                <div class="work-card-content">
+                    <h3 class="work-card-title">Graphics Design</h3>
+                    <p class="work-card-desc">Professional design solutions including logo design, branding, illustrations, static designs, and creative visual content.</p>
+                    <a href="#" class="work-link">Explore Graphics →</a>
                 </div>
             </div>
-            <div class="portfolio-card">
-                <div class="card-image">✨</div>
-                <div class="card-content">
-                    <h3 class="card-title">Modern Tech Logo</h3>
-                    <p class="card-description">Minimalist logo for a SaaS startup company</p>
-                    <div class="card-tags">
-                        <span class="tag">Logo</span>
-                        <span class="tag">Tech</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🌟</div>
-                <div class="card-content">
-                    <h3 class="card-title">Premium Fashion Logo</h3>
-                    <p class="card-description">Elegant logo for luxury fashion brand</p>
-                    <div class="card-tags">
-                        <span class="tag">Logo</span>
-                        <span class="tag">Fashion</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Book Layout Section -->
-    <div id="book" class="section">
-        <h2 class="section-title">Book Layout & Typography</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">📖</div>
-                <div class="card-content">
-                    <h3 class="card-title">Novel Layout Design</h3>
-                    <p class="card-description">Complete book layout with typography and page design</p>
-                    <div class="card-tags">
-                        <span class="tag">Layout</span>
-                        <span class="tag">Typography</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">📚</div>
-                <div class="card-content">
-                    <h3 class="card-title">Editorial Design</h3>
-                    <p class="card-description">Magazine and editorial layout with modern typography</p>
-                    <div class="card-tags">
-                        <span class="tag">Editorial</span>
-                        <span class="tag">Design</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">✍️</div>
-                <div class="card-content">
-                    <h3 class="card-title">Coffee Table Book</h3>
-                    <p class="card-description">Premium coffee table book with stunning imagery</p>
-                    <div class="card-tags">
-                        <span class="tag">Layout</span>
-                        <span class="tag">Premium</span>
-                    </div>
+            <!-- Web Development Card -->
+            <div class="work-card" id="web">
+                <div class="work-card-image">💻</div>
+                <div class="work-card-content">
+                    <h3 class="work-card-title">Web Development</h3>
+                    <p class="work-card-desc">Full-stack web solutions including responsive websites, web applications, and interactive digital experiences.</p>
+                    <a href="#" class="work-link">Explore Web →</a>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Static Design Section -->
-    <div id="static" class="section">
-        <h2 class="section-title">Static Design</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">🎨</div>
-                <div class="card-content">
-                    <h3 class="card-title">UI Design System</h3>
-                    <p class="card-description">Comprehensive UI kit with components and patterns</p>
-                    <div class="card-tags">
-                        <span class="tag">UI</span>
-                        <span class="tag">Design</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🖼️</div>
-                <div class="card-content">
-                    <h3 class="card-title">Poster Design</h3>
-                    <p class="card-description">Eye-catching promotional posters and prints</p>
-                    <div class="card-tags">
-                        <span class="tag">Print</span>
-                        <span class="tag">Poster</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🎭</div>
-                <div class="card-content">
-                    <h3 class="card-title">Packaging Design</h3>
-                    <p class="card-description">Product packaging with brand consistency</p>
-                    <div class="card-tags">
-                        <span class="tag">Packaging</span>
-                        <span class="tag">Product</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Illustrations Section -->
-    <div id="illustrations" class="section">
-        <h2 class="section-title">Illustrations</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">🎨</div>
-                <div class="card-content">
-                    <h3 class="card-title">Character Illustrations</h3>
-                    <p class="card-description">Custom character designs and digital illustrations</p>
-                    <div class="card-tags">
-                        <span class="tag">Character</span>
-                        <span class="tag">Illustration</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🌈</div>
-                <div class="card-content">
-                    <h3 class="card-title">Abstract Illustrations</h3>
-                    <p class="card-description">Creative abstract and conceptual artwork</p>
-                    <div class="card-tags">
-                        <span class="tag">Abstract</span>
-                        <span class="tag">Art</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🚀</div>
-                <div class="card-content">
-                    <h3 class="card-title">Concept Illustrations</h3>
-                    <p class="card-description">Concept art and digital illustrations for projects</p>
-                    <div class="card-tags">
-                        <span class="tag">Concept</span>
-                        <span class="tag">Digital</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Motion Graphics Section -->
-    <div id="motion" class="section">
-        <h2 class="section-title">Motion Graphics & Animation</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">🎬</div>
-                <div class="card-content">
-                    <h3 class="card-title">Logo Animation</h3>
-                    <p class="card-description">Animated logo reveals and transitions</p>
-                    <div class="card-tags">
-                        <span class="tag">Animation</span>
-                        <span class="tag">Motion</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">✨</div>
-                <div class="card-content">
-                    <h3 class="card-title">UI Animation</h3>
-                    <p class="card-description">Smooth transitions and interactive animations</p>
-                    <div class="card-tags">
-                        <span class="tag">UI</span>
-                        <span class="tag">Animation</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🎥</div>
-                <div class="card-content">
-                    <h3 class="card-title">Explainer Animation</h3>
-                    <p class="card-description">Product explainer and educational animations</p>
-                    <div class="card-tags">
-                        <span class="tag">Explainer</span>
-                        <span class="tag">Video</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video Section -->
-    <div id="video" class="section">
-        <h2 class="section-title">Video Production</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">🎞️</div>
-                <div class="card-content">
-                    <h3 class="card-title">Commercial Video</h3>
-                    <p class="card-description">Professional commercial and promotional videos</p>
-                    <div class="card-tags">
-                        <span class="tag">Video</span>
-                        <span class="tag">Commercial</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">📹</div>
-                <div class="card-content">
-                    <h3 class="card-title">Corporate Video</h3>
-                    <p class="card-description">Corporate storytelling and brand videos</p>
-                    <div class="card-tags">
-                        <span class="tag">Corporate</span>
-                        <span class="tag">Branding</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🎬</div>
-                <div class="card-content">
-                    <h3 class="card-title">Social Media Videos</h3>
-                    <p class="card-description">Engaging short-form videos for social platforms</p>
-                    <div class="card-tags">
-                        <span class="tag">Social</span>
-                        <span class="tag">Video</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Web Development Section -->
-    <div id="web" class="section">
-        <h2 class="section-title">Web Development</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">💻</div>
-                <div class="card-content">
-                    <h3 class="card-title">E-Commerce Website</h3>
-                    <p class="card-description">Full-stack e-commerce platform with payment integration</p>
-                    <div class="card-tags">
-                        <span class="tag">Web</span>
-                        <span class="tag">E-Commerce</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🌐</div>
-                <div class="card-content">
-                    <h3 class="card-title">Corporate Website</h3>
-                    <p class="card-description">Responsive corporate website with CMS</p>
-                    <div class="card-tags">
-                        <span class="tag">Web</span>
-                        <span class="tag">Corporate</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">⚡</div>
-                <div class="card-content">
-                    <h3 class="card-title">Web Application</h3>
-                    <p class="card-description">Interactive web application with modern framework</p>
-                    <div class="card-tags">
-                        <span class="tag">App</span>
-                        <span class="tag">Technology</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Branding Section -->
-    <div id="branding" class="section">
-        <h2 class="section-title">Branding & Identity</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="card-image">🎯</div>
-                <div class="card-content">
-                    <h3 class="card-title">Complete Brand Identity</h3>
-                    <p class="card-description">Logo, color palette, typography, and brand guidelines</p>
-                    <div class="card-tags">
-                        <span class="tag">Branding</span>
-                        <span class="tag">Identity</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">🏢</div>
-                <div class="card-content">
-                    <h3 class="card-title">Corporate Rebranding</h3>
-                    <p class="card-description">Strategic rebranding for established company</p>
-                    <div class="card-tags">
-                        <span class="tag">Corporate</span>
-                        <span class="tag">Strategy</span>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <div class="card-image">✨</div>
-                <div class="card-content">
-                    <h3 class="card-title">Startup Branding</h3>
-                    <p class="card-description">Full branding package for startups from concept to launch</p>
-                    <div class="card-tags">
-                        <span class="tag">Startup</span>
-                        <span class="tag">Branding</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="section">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-form">
-            <form onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="social-links">
+            <div class="footer-section">
+                <h3>Design Services</h3>
+                <a href="#">Logo Design</a>
+                <a href="#">Branding</a>
+                <a href="#">Illustrations</a>
+                <a href="#">Packaging</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Development Services</h3>
+                <a href="#">Web Design</a>
+                <a href="#">Web Apps</a>
+                <a href="#">Responsive Sites</a>
+                <a href="#">UI/UX Design</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="#contact">Contact Me</a>
                 <a href="#">LinkedIn</a>
                 <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">Dribbble</a>
+                <a href="#">GitHub</a>
             </div>
+        </div>
+
+        <div class="footer-bottom">
             <p>&copy; 2025 Yona Miti. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Remove active class from all nav links
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Show selected section
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.classList.add('active');
-            }
-
-            // Add active class to clicked nav link
-            event.target.classList.add('active');
-
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for reaching out! I will get back to you soon.');
-            event.target.reset();
-        }
-    </script>
 </body>
 </html>
