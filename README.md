@@ -1,2 +1,822 @@
-# yonamiti.github.io
-My Graphics Design and Web Development Portfolio
+//# yonamiti.github.io
+//My Graphics Design and Web Development Portfolio
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yona Miti - Creative Designer & Developer</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #ec4899;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.25rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.8s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 60px);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--light-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">YM</a>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')" class="nav-link active">Home</a></li>
+                <li><a onclick="showSection('logo')" class="nav-link">Logo Design</a></li>
+                <li><a onclick="showSection('book')" class="nav-link">Book Layout</a></li>
+                <li><a onclick="showSection('static')" class="nav-link">Static Design</a></li>
+                <li><a onclick="showSection('illustrations')" class="nav-link">Illustrations</a></li>
+                <li><a onclick="showSection('motion')" class="nav-link">Motion Graphics</a></li>
+                <li><a onclick="showSection('video')" class="nav-link">Video</a></li>
+                <li><a onclick="showSection('web')" class="nav-link">Web Development</a></li>
+                <li><a onclick="showSection('branding')" class="nav-link">Branding</a></li>
+                <li><a onclick="showSection('contact')" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Yona Miti</h1>
+                <p>Creative Designer, Developer & Brand Strategist</p>
+                <p style="font-size: 1rem; opacity: 0.85; margin-top: -1rem;">Crafting compelling visual identities and digital experiences</p>
+                <button class="cta-button" onclick="showSection('portfolio')">Explore My Work</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Design Section -->
+    <div id="logo" class="section">
+        <h2 class="section-title">Logo Design</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">🎯</div>
+                <div class="card-content">
+                    <h3 class="card-title">Brand Identity System</h3>
+                    <p class="card-description">Comprehensive logo design with brand guidelines and variations</p>
+                    <div class="card-tags">
+                        <span class="tag">Logo</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">✨</div>
+                <div class="card-content">
+                    <h3 class="card-title">Modern Tech Logo</h3>
+                    <p class="card-description">Minimalist logo for a SaaS startup company</p>
+                    <div class="card-tags">
+                        <span class="tag">Logo</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🌟</div>
+                <div class="card-content">
+                    <h3 class="card-title">Premium Fashion Logo</h3>
+                    <p class="card-description">Elegant logo for luxury fashion brand</p>
+                    <div class="card-tags">
+                        <span class="tag">Logo</span>
+                        <span class="tag">Fashion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Layout Section -->
+    <div id="book" class="section">
+        <h2 class="section-title">Book Layout & Typography</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">📖</div>
+                <div class="card-content">
+                    <h3 class="card-title">Novel Layout Design</h3>
+                    <p class="card-description">Complete book layout with typography and page design</p>
+                    <div class="card-tags">
+                        <span class="tag">Layout</span>
+                        <span class="tag">Typography</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">📚</div>
+                <div class="card-content">
+                    <h3 class="card-title">Editorial Design</h3>
+                    <p class="card-description">Magazine and editorial layout with modern typography</p>
+                    <div class="card-tags">
+                        <span class="tag">Editorial</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">✍️</div>
+                <div class="card-content">
+                    <h3 class="card-title">Coffee Table Book</h3>
+                    <p class="card-description">Premium coffee table book with stunning imagery</p>
+                    <div class="card-tags">
+                        <span class="tag">Layout</span>
+                        <span class="tag">Premium</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Static Design Section -->
+    <div id="static" class="section">
+        <h2 class="section-title">Static Design</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">🎨</div>
+                <div class="card-content">
+                    <h3 class="card-title">UI Design System</h3>
+                    <p class="card-description">Comprehensive UI kit with components and patterns</p>
+                    <div class="card-tags">
+                        <span class="tag">UI</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🖼️</div>
+                <div class="card-content">
+                    <h3 class="card-title">Poster Design</h3>
+                    <p class="card-description">Eye-catching promotional posters and prints</p>
+                    <div class="card-tags">
+                        <span class="tag">Print</span>
+                        <span class="tag">Poster</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🎭</div>
+                <div class="card-content">
+                    <h3 class="card-title">Packaging Design</h3>
+                    <p class="card-description">Product packaging with brand consistency</p>
+                    <div class="card-tags">
+                        <span class="tag">Packaging</span>
+                        <span class="tag">Product</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Illustrations Section -->
+    <div id="illustrations" class="section">
+        <h2 class="section-title">Illustrations</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">🎨</div>
+                <div class="card-content">
+                    <h3 class="card-title">Character Illustrations</h3>
+                    <p class="card-description">Custom character designs and digital illustrations</p>
+                    <div class="card-tags">
+                        <span class="tag">Character</span>
+                        <span class="tag">Illustration</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🌈</div>
+                <div class="card-content">
+                    <h3 class="card-title">Abstract Illustrations</h3>
+                    <p class="card-description">Creative abstract and conceptual artwork</p>
+                    <div class="card-tags">
+                        <span class="tag">Abstract</span>
+                        <span class="tag">Art</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🚀</div>
+                <div class="card-content">
+                    <h3 class="card-title">Concept Illustrations</h3>
+                    <p class="card-description">Concept art and digital illustrations for projects</p>
+                    <div class="card-tags">
+                        <span class="tag">Concept</span>
+                        <span class="tag">Digital</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Motion Graphics Section -->
+    <div id="motion" class="section">
+        <h2 class="section-title">Motion Graphics & Animation</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">🎬</div>
+                <div class="card-content">
+                    <h3 class="card-title">Logo Animation</h3>
+                    <p class="card-description">Animated logo reveals and transitions</p>
+                    <div class="card-tags">
+                        <span class="tag">Animation</span>
+                        <span class="tag">Motion</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">✨</div>
+                <div class="card-content">
+                    <h3 class="card-title">UI Animation</h3>
+                    <p class="card-description">Smooth transitions and interactive animations</p>
+                    <div class="card-tags">
+                        <span class="tag">UI</span>
+                        <span class="tag">Animation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🎥</div>
+                <div class="card-content">
+                    <h3 class="card-title">Explainer Animation</h3>
+                    <p class="card-description">Product explainer and educational animations</p>
+                    <div class="card-tags">
+                        <span class="tag">Explainer</span>
+                        <span class="tag">Video</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <div id="video" class="section">
+        <h2 class="section-title">Video Production</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">🎞️</div>
+                <div class="card-content">
+                    <h3 class="card-title">Commercial Video</h3>
+                    <p class="card-description">Professional commercial and promotional videos</p>
+                    <div class="card-tags">
+                        <span class="tag">Video</span>
+                        <span class="tag">Commercial</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">📹</div>
+                <div class="card-content">
+                    <h3 class="card-title">Corporate Video</h3>
+                    <p class="card-description">Corporate storytelling and brand videos</p>
+                    <div class="card-tags">
+                        <span class="tag">Corporate</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🎬</div>
+                <div class="card-content">
+                    <h3 class="card-title">Social Media Videos</h3>
+                    <p class="card-description">Engaging short-form videos for social platforms</p>
+                    <div class="card-tags">
+                        <span class="tag">Social</span>
+                        <span class="tag">Video</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Development Section -->
+    <div id="web" class="section">
+        <h2 class="section-title">Web Development</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">💻</div>
+                <div class="card-content">
+                    <h3 class="card-title">E-Commerce Website</h3>
+                    <p class="card-description">Full-stack e-commerce platform with payment integration</p>
+                    <div class="card-tags">
+                        <span class="tag">Web</span>
+                        <span class="tag">E-Commerce</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🌐</div>
+                <div class="card-content">
+                    <h3 class="card-title">Corporate Website</h3>
+                    <p class="card-description">Responsive corporate website with CMS</p>
+                    <div class="card-tags">
+                        <span class="tag">Web</span>
+                        <span class="tag">Corporate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">⚡</div>
+                <div class="card-content">
+                    <h3 class="card-title">Web Application</h3>
+                    <p class="card-description">Interactive web application with modern framework</p>
+                    <div class="card-tags">
+                        <span class="tag">App</span>
+                        <span class="tag">Technology</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Branding Section -->
+    <div id="branding" class="section">
+        <h2 class="section-title">Branding & Identity</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="card-image">🎯</div>
+                <div class="card-content">
+                    <h3 class="card-title">Complete Brand Identity</h3>
+                    <p class="card-description">Logo, color palette, typography, and brand guidelines</p>
+                    <div class="card-tags">
+                        <span class="tag">Branding</span>
+                        <span class="tag">Identity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">🏢</div>
+                <div class="card-content">
+                    <h3 class="card-title">Corporate Rebranding</h3>
+                    <p class="card-description">Strategic rebranding for established company</p>
+                    <div class="card-tags">
+                        <span class="tag">Corporate</span>
+                        <span class="tag">Strategy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-image">✨</div>
+                <div class="card-content">
+                    <h3 class="card-title">Startup Branding</h3>
+                    <p class="card-description">Full branding package for startups from concept to launch</p>
+                    <div class="card-tags">
+                        <span class="tag">Startup</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">Dribbble</a>
+            </div>
+            <p>&copy; 2025 Yona Miti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
+
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for reaching out! I will get back to you soon.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
