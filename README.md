@@ -1,4 +1,4 @@
-//# yonamiti.github.io
+# yonamiti.github.io
 //My Graphics Design and Web Development Portfolio
 
 <!DOCTYPE html>
