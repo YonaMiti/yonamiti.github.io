@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Journal Blog - Yona Miti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f5f7;
+            --surface: #ffffff;
+            --surface-soft: #f9fafb;
+            --border: #e5e7eb;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #6b7280;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #e5edff 0, #f5f5f7 45%, #fdfdfd 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.75rem 1.5rem 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .page {
+                padding: 1.5rem 1.25rem 2.25rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .page {
+                padding: 1.25rem 1rem 2.1rem;
+            }
+        }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            left: 1.2rem;
+            bottom: 1rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            font-size: 0.78rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            z-index: 20;
+        }
+
+        .back-link:hover {
+            background: rgba(15, 23, 42, 0.98);
+        }
+
+        @media (max-width: 520px) {
+            .back-link {
+                left: 0.6rem;
+                bottom: 0.7rem;
+                padding: 0.45rem 0.8rem;
+            }
+        }
+
+        /* Top nav */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: conic-gradient(from 200deg, #2563eb, #ec4899, #f97316, #22c55e, #2563eb);
+            padding: 2px;
+        }
+
+        .brand-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #111827;
+        }
+
+        .brand-text-main {
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .brand-text-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .nav-link {
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            color: var(--text-muted);
+        }
+
+        .nav-link--primary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.6fr);
+            gap: 2rem;
+            align-items: stretch;
+            margin-bottom: 2.4rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #1d4ed8;
+            font-size: 0.78rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #2563eb 0%, #ec4899 45%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            max-width: 460px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .hero-pill {
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4338ca;
+        }
+
+        /* Hero featured card with image */
+        .hero-featured {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 1.1rem 1.1rem 1.2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 22px 50px rgba(15, 23, 42, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-featured-image {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 0.9rem;
+            background: linear-gradient(135deg, #eff6ff, #fef3c7);
+            height: 190px;
+            position: relative;
+        }
+
+        .hero-featured-image::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(37, 99, 235, 0.15), rgba(236, 72, 153, 0.2));
+        }
+
+        .hero-featured-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .hero-featured-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-featured-text {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 3.1fr) minmax(0, 1.9fr);
+            gap: 2.2rem;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        /* Posts */
+        .posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .post-card {
+            background: var(--surface);
+            border-radius: 18px;
+            padding: 1.1rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.04);
+            display: grid;
+            grid-template-columns: 160px minmax(0, 1fr);
+            gap: 1rem;
+            align-items: stretch;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.08);
+            border-color: rgba(37, 99, 235, 0.6);
+        }
+
+        @media (max-width: 720px) {
+            .post-card {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .post-image {
+            width: 100%;
+            border-radius: 14px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fee2e2, #eff6ff);
+            height: 120px;
+            position: relative;
+        }
+
+        .post-image--2 {
+            background: linear-gradient(135deg, #fef3c7, #e0f2fe);
+        }
+
+        .post-image--3 {
+            background: linear-gradient(135deg, #e0f2fe, #f5d0fe);
+        }
+
+        .post-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .post-tag {
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 0.75rem;
+        }
+
+        .post-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .post-title a {
+            color: #111827;
+        }
+
+        .post-title a:hover {
+            color: var(--accent);
+        }
+
+        .post-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 0.65rem;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        .post-footer-left {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .read-link {
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.32rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+        }
+
+        .read-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        .sidebar-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 1.1rem 1.1rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.04);
+        }
+
+        .sidebar-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .recent-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .recent-list a {
+            font-size: 0.86rem;
+            color: #111827;
+        }
+
+        .recent-list a:hover {
+            color: var(--accent);
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-chip {
+            font-size: 0.78rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .newsletter-text {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--surface-soft);
+            color: var(--text-main);
+            font-size: 0.82rem;
+            padding: 0.4rem 0.7rem;
+            outline: none;
+        }
+
+        .newsletter-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .newsletter-btn {
+            border-radius: 999px;
+            border: none;
+            background: var(--accent);
+            padding: 0.4rem 0.7rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #f9fafb;
+            cursor: pointer;
+        }
+
+        .newsletter-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 2.2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <a href="../web-development.html" class="back-link">← Back to Web Development</a>
+
+    <div class="page">
+        <!-- Top nav -->
+        <header class="top-nav">
+            <div class="brand">
+                <div class="brand-mark">
+                    <div class="brand-inner">YM</div>
+                </div>
+                <div>
+                    <div class="brand-text-main">Code Journal</div>
+                    <div class="brand-text-sub">Articles on web design & development</div>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">Articles</a>
+                <a href="#" class="nav-link">Projects</a>
+                <a href="#" class="nav-link nav-link--primary">Subscribe</a>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <span>📝</span>
+                    Latest from the blog
+                </div>
+                <h1 class="hero-title">
+                    Practical notes on building <span class="hero-highlight">clean, modern websites</span>.
+                </h1>
+                <p class="hero-text">
+                    Short, focused posts on layout, components, and front‑end projects written while
+                    learning and building real portfolio pieces.
+                </p>
+                <div class="hero-meta">
+                    <span class="hero-pill">HTML & CSS</span>
+                    <span class="hero-pill">JavaScript</span>
+                    <span>•</span>
+                    <span>New posts every month</span>
+                </div>
+            </div>
+
+            <aside class="hero-featured">
+                <div class="hero-featured-image">
+                    <!-- Replace this area with a real <img> when you have assets -->
+                    <!-- Example:
+                    <img src="images/featured-article.jpg" alt="Laptop on desk with UI designs" style="width:100%;height:100%;object-fit:cover;">
+                    -->
+                </div>
+                <div class="hero-featured-label">Featured article</div>
+                <h2 class="hero-featured-title">How a simple layout becomes a real project</h2>
+                <p class="hero-featured-text">
+                    Starting from basic structure, this blog homepage was designed like a real site:
+                    hero, posts list, sidebar, and footer — ready to plug into a portfolio.
+                </p>
+            </aside>
+        </section>
+
+        <!-- Main layout -->
+        <main class="layout">
+            <!-- Posts -->
+            <section class="posts" aria-label="Blog posts">
+                <article class="post-card">
+                    <div class="post-image">
+                        <!-- Replace with real image:
+                        <img src="images/blog-layout.jpg" alt="Wireframe and website layout" style="width:100%;height:100%;object-fit:cover;">
+                        -->
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 8, 2025</span>
+                            <span>•</span>
+                            <span>5 min read</span>
+                            <span class="post-tag">Layout</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="#">Designing a simple blog homepage for your portfolio</a>
+                        </h2>
+                        <p class="post-excerpt">
+                            A clean blog page shows that you understand structure, spacing, and responsive
+                            design. This layout is built with only HTML and CSS, making it easy to adapt for
+                            your own content.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-footer-left">
+                                <span>By Yona</span>
+                                <span>•</span>
+                                <span>Practice project</span>
+                            </div>
+                            <a href="#" class="read-link">
+                                <span>Read article</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image post-image--2">
+                        <!-- Replace with real image:
+                        <img src="images/typography.jpg" alt="Typography styles on screen" style="width:100%;height:100%;object-fit:cover;">
+                        -->
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Dec 3, 2025</span>
+                            <span>•</span>
+                            <span>7 min read</span>
+                            <span class="post-tag">Typography</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="#">Typography and spacing that feel good to read</a>
+                        </h2>
+                        <p class="post-excerpt">
+                            Good typography does not need many fonts. With careful sizes, line heights, and
+                            margins, a simple type stack can look professional and easy on the eyes.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-footer-left">
+                                <span>By Yona</span>
+                                <span>•</span>
+                                <span>Notes</span>
+                            </div>
+                            <a href="#" class="read-link">
+                                <span>Read article</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image post-image--3">
+                        <!-- Replace with real image:
+                        <img src="images/responsive.jpg" alt="Responsive layouts on devices" style="width:100%;height:100%;object-fit:cover;">
+                        -->
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>Nov 28, 2025</span>
+                            <span>•</span>
+                            <span>4 min read</span>
+                            <span class="post-tag">Responsive</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="#">Turning a static layout into a responsive blog</a>
+                        </h2>
+                        <p class="post-excerpt">
+                            Using simple grid and flexbox rules, this page moves from two columns to a single
+                            column on smaller screens without breaking the reading experience.
+                        </p>
+                        <div class="post-footer">
+                            <div class="post-footer-left">
+                                <span>By Yona</span>
+                                <span>•</span>
+                                <span>Learning log</span>
+                            </div>
+                            <a href="#" class="read-link">
+                                <span>Read article</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar" aria-label="Sidebar">
+                <section class="sidebar-card">
+                    <h2 class="sidebar-title">Recent posts</h2>
+                    <ul class="recent-list">
+                        <li><a href="#">Building a portfolio with practice projects</a></li>
+                        <li><a href="#">Using a blog page to show layout skills</a></li>
+                        <li><a href="#">Small CSS details that polish a layout</a></li>
+                        <li><a href="#">From static pages to interactive apps</a></li>
+                    </ul>
+                </section>
+
+                <section class="sidebar-card">
+                    <h2 class="sidebar-title">Tags</h2>
+                    <div class="tag-cloud">
+                        <span class="tag-chip">HTML</span>
+                        <span class="tag-chip">CSS</span>
+                        <span class="tag-chip">JavaScript</span>
+                        <span class="tag-chip">Layout</span>
+                        <span class="tag-chip">Typography</span>
+                        <span class="tag-chip">Projects</span>
+                    </div>
+                </section>
+
+                <section class="sidebar-card">
+                    <h2 class="sidebar-title">Newsletter</h2>
+                    <p class="newsletter-text">
+                        Get updates when new layouts, components, and practice projects are added.
+                    </p>
+                    <form class="newsletter-form" action="#" method="post">
+                        <input type="email" class="newsletter-input" placeholder="you@example.com">
+                        <button type="submit" class="newsletter-btn">Join</button>
+                    </form>
+                </section>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>© 2025 Code Journal by Yona Miti.</span>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Articles</a>
+                <a href="#">Contact</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

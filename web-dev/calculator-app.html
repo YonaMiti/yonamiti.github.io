@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App - Yona Miti</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #4f46e5 100%);
+            --accent: #6366f1;
+            --accent-soft: rgba(99, 102, 241, 0.12);
+            --accent-strong: #4f46e5;
+            --danger: #ef4444;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --card-bg: #020617;
+            --border-soft: #1f2937;
+            --operator-bg: #111827;
+            --number-bg: #020617;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #1f2937 0, #020617 55%, #000000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .app-shell {
+            width: 100%;
+            max-width: 1120px;
+            display: grid;
+            grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr);
+            gap: 2.5rem;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .app-shell {
+                grid-template-columns: 1fr;
+                max-width: 640px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            body {
+                padding: 1rem;
+            }
+        }
+
+        /* Left info panel */
+        .info-card {
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.25), transparent 55%),
+                        #020617;
+            border-radius: 26px;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow:
+                0 22px 60px rgba(15, 23, 42, 0.85),
+                inset 0 0 0 1px rgba(15, 23, 42, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 0% 0%, rgba(129, 140, 248, 0.28), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.22), transparent 55%);
+            opacity: 0.8;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .info-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.7);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .badge span {
+            font-size: 0.95rem;
+        }
+
+        .info-title {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.04em;
+        }
+
+        .info-highlight {
+            background: linear-gradient(135deg, #a855f7 0%, #f97316 45%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-text {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            max-width: 460px;
+            margin-bottom: 1.8rem;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-bottom: 2.1rem;
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: #e5e7eb;
+            backdrop-filter: blur(8px);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .stat {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 18px;
+            padding: 0.9rem 0.85rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .stat-sub {
+            font-size: 0.78rem;
+            margin-top: 0.12rem;
+            color: #a5b4fc;
+        }
+
+        /* Calculator card */
+        .calc-card {
+            background: radial-gradient(circle at top, rgba(79, 70, 229, 0.64), transparent 55%),
+                        #020617;
+            border-radius: 26px;
+            padding: 1.6rem 1.45rem 1.5rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            box-shadow:
+                0 26px 70px rgba(15, 23, 42, 0.9),
+                inset 0 0 0 1px rgba(15, 23, 42, 0.7);
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 900px) {
+            .calc-card {
+                max-width: 360px;
+            }
+        }
+
+        .calc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.9rem;
+        }
+
+        .calc-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: #e5e7eb;
+        }
+
+        .calc-title span {
+            font-size: 0.95rem;
+            color: #a5b4fc;
+        }
+
+        .mode-pill {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.7);
+            color: var(--text-muted);
+        }
+
+        /* Display */
+        .display {
+            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.7), transparent 55%),
+                        rgba(15, 23, 42, 0.95);
+            border-radius: 18px;
+            padding: 0.9rem 0.9rem 0.75rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            margin-bottom: 1rem;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .display-history {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            text-align: right;
+            min-height: 1.2em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .display-current {
+            margin-top: 0.15rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: right;
+            letter-spacing: 0.03em;
+        }
+
+        /* Buttons grid */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.6rem;
+        }
+
+        .btn {
+            border-radius: 16px;
+            border: 1px solid rgba(31, 41, 55, 0.95);
+            background: var(--number-bg);
+            color: #e5e7eb;
+            font-size: 1.05rem;
+            padding: 0.9rem 0.3rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.9);
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+            user-select: none;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.8);
+        }
+
+        .btn-operator {
+            background: var(--operator-bg);
+            color: #c4b5fd;
+        }
+
+        .btn-operator:hover {
+            background: #111827;
+            border-color: #4f46e5;
+        }
+
+        .btn-func {
+            color: #fbbf24;
+        }
+
+        .btn-func:hover {
+            background: #0b1120;
+            border-color: #fbbf24;
+        }
+
+        .btn-danger {
+            color: #fecaca;
+        }
+
+        .btn-danger:hover {
+            background: #0b1120;
+            border-color: var(--danger);
+        }
+
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        .btn-equals {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 40%, #f97316 100%);
+            border-color: transparent;
+            color: #f9fafb;
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.85);
+        }
+
+        .btn-equals:hover {
+            box-shadow: 0 18px 38px rgba(79, 70, 229, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .btn-number:hover {
+            background: #020617;
+            border-color: #4b5563;
+        }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            left: 1.2rem;
+            bottom: 1rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            font-size: 0.78rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            z-index: 20;
+        }
+
+        .back-link:hover {
+            background: rgba(15, 23, 42, 0.98);
+        }
+
+        @media (max-width: 560px) {
+            .back-link {
+                left: 0.6rem;
+                bottom: 0.7rem;
+                padding: 0.45rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../web-development.html" class="back-link">← Back to Web Development</a>
+
+    <main class="app-shell">
+        <!-- Info panel -->
+        <section class="info-card">
+            <div class="info-inner">
+                <div class="badge">
+                    <span>🧮</span> Event Handling • Input Validation • Dynamic UI
+                </div>
+                <h1 class="info-title">
+                    Multi‑Function <span class="info-highlight">Calculator</span> App
+                </h1>
+                <p class="info-text">
+                    A focused JavaScript project built to practice button events, expression handling,
+                    and responsive UI layout while keeping the interface clean and modern.
+                </p>
+
+                <div class="pill-row">
+                    <span class="pill">HTML</span>
+                    <span class="pill">CSS</span>
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">Event Listeners</span>
+                    <span class="pill">Keyboard‑like Grid</span>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat">
+                        <p class="stat-label">Concepts</p>
+                        <p class="stat-value">Events</p>
+                        <p class="stat-sub">Click & state updates</p>
+                    </div>
+                    <div class="stat">
+                        <p class="stat-label">Difficulty</p>
+                        <p class="stat-value">Beginner</p>
+                        <p class="stat-sub">Step‑by‑step logic</p>
+                    </div>
+                    <div class="stat">
+                        <p class="stat-label">Focus</p>
+                        <p class="stat-value">UI + JS</p>
+                        <p class="stat-sub">Math operations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator -->
+        <section class="calc-card">
+            <header class="calc-header">
+                <div class="calc-title">
+                    <span>◆</span> Calculator
+                </div>
+                <span class="mode-pill">Standard • JS Practice</span>
+            </header>
+
+            <div class="display">
+                <div id="display-history" class="display-history"></div>
+                <div id="display-current" class="display-current">0</div>
+            </div>
+
+            <div class="btn-grid">
+                <!-- Row 1 -->
+                <button class="btn btn-func btn-danger" data-action="clear">AC</button>
+                <button class="btn btn-func" data-action="backspace">⌫</button>
+                <button class="btn btn-operator" data-operator="%">%</button>
+                <button class="btn btn-operator" data-operator="÷">÷</button>
+
+                <!-- Row 2 -->
+                <button class="btn btn-number" data-number="7">7</button>
+                <button class="btn btn-number" data-number="8">8</button>
+                <button class="btn btn-number" data-number="9">9</button>
+                <button class="btn btn-operator" data-operator="×">×</button>
+
+                <!-- Row 3 -->
+                <button class="btn btn-number" data-number="4">4</button>
+                <button class="btn btn-number" data-number="5">5</button>
+                <button class="btn btn-number" data-number="6">6</button>
+                <button class="btn btn-operator" data-operator="-">−</button>
+
+                <!-- Row 4 -->
+                <button class="btn btn-number" data-number="1">1</button>
+                <button class="btn btn-number" data-number="2">2</button>
+                <button class="btn btn-number" data-number="3">3</button>
+                <button class="btn btn-operator" data-operator="+">+</button>
+
+                <!-- Row 5 -->
+                <button class="btn btn-number btn-zero" data-number="0">0</button>
+                <button class="btn btn-number" data-number=".">.</button>
+                <button class="btn btn-equals" data-action="equals">=</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const displayCurrent = document.getElementById('display-current');
+        const displayHistory = document.getElementById('display-history');
+        const buttons = document.querySelectorAll('.btn-grid .btn');
+
+        let currentValue = '0';
+        let previousValue = '';
+        let currentOperator = null;
+        let justCalculated = false;
+
+        function updateDisplay() {
+            displayCurrent.textContent = currentValue || '0';
+            if (previousValue && currentOperator) {
+                displayHistory.textContent = previousValue + ' ' + currentOperator;
+            } else {
+                displayHistory.textContent = '';
+            }
+        }
+
+        function handleNumberInput(num) {
+            if (justCalculated) {
+                currentValue = '0';
+                justCalculated = false;
+            }
+
+            if (num === '.') {
+                if (currentValue.includes('.')) return;
+                currentValue += '.';
+            } else {
+                if (currentValue === '0') {
+                    currentValue = num;
+                } else {
+                    currentValue += num;
+                }
+            }
+            updateDisplay();
+        }
+
+        function setOperator(op) {
+            if (currentOperator && !justCalculated) {
+                compute();
+            } else {
+                previousValue = currentValue;
+            }
+            currentOperator = op;
+            justCalculated = false;
+            currentValue = '0';
+            updateDisplay();
+        }
+
+        function clearAll() {
+            currentValue = '0';
+            previousValue = '';
+            currentOperator = null;
+            justCalculated = false;
+            updateDisplay();
+        }
+
+        function backspace() {
+            if (justCalculated) {
+                currentValue = '0';
+                justCalculated = false;
+            } else {
+                if (currentValue.length > 1) {
+                    currentValue = currentValue.slice(0, -1);
+                } else {
+                    currentValue = '0';
+                }
+            }
+            updateDisplay();
+        }
+
+        function compute() {
+            if (!currentOperator || previousValue === '' || currentValue === '') return;
+
+            const prev = parseFloat(previousValue);
+            const current = parseFloat(currentValue);
+            let result;
+
+            switch (currentOperator) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                case '−':
+                    result = prev - current;
+                    break;
+                case '×':
+                    result = prev * current;
+                    break;
+                case '÷':
+                    if (current === 0) {
+                        result = 'Error';
+                    } else {
+                        result = prev / current;
+                    }
+                    break;
+                case '%':
+                    result = prev % current;
+                    break;
+                default:
+                    return;
+            }
+
+            const expression = previousValue + ' ' + currentOperator + ' ' + currentValue + ' =';
+            displayHistory.textContent = expression;
+
+            currentValue = String(result);
+            previousValue = '';
+            currentOperator = null;
+            justCalculated = true;
+            displayCurrent.textContent = currentValue;
+        }
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const number = btn.dataset.number;
+                const operator = btn.dataset.operator;
+                const action = btn.dataset.action;
+
+                if (number !== undefined) {
+                    handleNumberInput(number);
+                    return;
+                }
+
+                if (operator !== undefined) {
+                    setOperator(operator);
+                    return;
+                }
+
+                if (action === 'clear') {
+                    clearAll();
+                    return;
+                }
+
+                if (action === 'backspace') {
+                    backspace();
+                    return;
+                }
+
+                if (action === 'equals') {
+                    compute();
+                    return;
+                }
+            });
+        });
+
+        updateDisplay();
+    </script>
+</body>
+</html>

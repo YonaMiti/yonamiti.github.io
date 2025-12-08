@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Layout & Typography - Yona Miti</title>
+    <link rel="stylesheet" href="../css/book layout and typography.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">YM</a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html#work">Explore My Work</a>
+                    <div class="dropdown-menu">
+                        <a href="../graphics-design.html">
+                            <span class="icon">🎨</span>
+                            <span class="text">
+                                <span class="title">Graphics Design</span>
+                                <span class="description">Logos, branding, visuals</span>
+                            </span>
+                        </a>
+                        <a href="../web-development.html">
+                            <span class="icon">💻</span>
+                            <span class="text">
+                                <span class="title">Web Development</span>
+                                <span class="description">Websites, apps, UI/UX</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact.html">Contact Me</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Book Layout & Typography</h1>
+            <p>Elegant editorial design and typographic masterpieces</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-intro">
+            <h2>Typography & Book Design</h2>
+            <p>Artistic book layouts with custom typography and elegant page designs</p>
+        </div>
+
+        <!-- Books Container - 1 column, 6 rows -->
+        <div class="books-container">
+            <!-- Book 1: Poetry Collection -->
+            <div class="book-project">
+                <div class="book-header">
+                    <div class="book-info">
+                        <h3>Poetry Collection</h3>
+                        <p>Contemporary verse with elegant typography</p>
+                    </div>
+                    <div class="page-indicator">4 Pages</div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="carousel1">
+                        <div class="carousel-page active">
+                            <div class="page-content">📖</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">✨</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">📝</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🎭</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevPage(1)">←</button>
+                    <span class="carousel-counter"><span class="current" id="counter1">1</span> / 4</span>
+                    <button class="carousel-btn" onclick="nextPage(1)">→</button>
+                </div>
+            </div>
+
+            <!-- Book 2: Magazine Design -->
+            <div class="book-project">
+                <div class="book-header">
+                    <div class="book-info">
+                        <h3>Magazine Layouts</h3>
+                        <p>Fashion magazine with modern design aesthetic</p>
+                    </div>
+                    <div class="page-indicator">4 Pages</div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="carousel2">
+                        <div class="carousel-page active">
+                            <div class="page-content">📰</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">👗</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">💎</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">✨</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevPage(2)">←</button>
+                    <span class="carousel-counter"><span class="current" id="counter2">1</span> / 4</span>
+                    <button class="carousel-btn" onclick="nextPage(2)">→</button>
+                </div>
+            </div>
+
+            <!-- Book 3: Art Book -->
+            <div class="book-project">
+                <div class="book-header">
+                    <div class="book-info">
+                        <h3>Art Book</h3>
+                        <p>Contemporary art exhibition catalog</p>
+                    </div>
+                    <div class="page-indicator">4 Pages</div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="carousel3">
+                        <div class="carousel-page active">
+                            <div class="page-content">🎨</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🖼️</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🌈</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">✨</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevPage(3)">←</button>
+                    <span class="carousel-counter"><span class="current" id="counter3">1</span> / 4</span>
+                    <button class="carousel-btn" onclick="nextPage(3)">→</button>
+                </div>
+            </div>
+
+            <!-- Book 4: Travel Guide -->
+            <div class="book-project">
+                <div class="book-header">
+                    <div class="book-info">
+                        <h3>Travel Guide</h3>
+                        <p>Destination guide with vibrant typography</p>
+                    </div>
+                    <div class="page-indicator">4 Pages</div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="carousel4">
+                        <div class="carousel-page active">
+                            <div class="page-content">✈️</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🗺️</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🏖️</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🌍</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevPage(4)">←</button>
+                    <span class="carousel-counter"><span class="current" id="counter4">1</span> / 4</span>
+                    <button class="carousel-btn" onclick="nextPage(4)">→</button>
+                </div>
+            </div>
+
+            <!-- Book 5: Recipe Book -->
+            <div class="book-project">
+                <div class="book-header">
+                    <div class="book-info">
+                        <h3>Recipe Book</h3>
+                        <p>Culinary designs with elegant typography</p>
+                    </div>
+                    <div class="page-indicator">4 Pages</div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="carousel5">
+                        <div class="carousel-page active">
+                            <div class="page-content">👨‍🍳</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🍽️</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🥘</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🍷</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevPage(5)">←</button>
+                    <span class="carousel-counter"><span class="current" id="counter5">1</span> / 4</span>
+                    <button class="carousel-btn" onclick="nextPage(5)">→</button>
+                </div>
+            </div>
+
+            <!-- Book 6: Photography Portfolio -->
+            <div class="book-project">
+                <div class="book-header">
+                    <div class="book-info">
+                        <h3>Photography Portfolio</h3>
+                        <p>Artistic photography book layout</p>
+                    </div>
+                    <div class="page-indicator">4 Pages</div>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="book-carousel" id="carousel6">
+                        <div class="carousel-page active">
+                            <div class="page-content">📸</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🖼️</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">🌅</div>
+                        </div>
+                        <div class="carousel-page">
+                            <div class="page-content">✨</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevPage(6)">←</button>
+                    <span class="carousel-counter"><span class="current" id="counter6">1</span> / 4</span>
+                    <button class="carousel-btn" onclick="nextPage(6)">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="../graphics-design.html">← Back to Graphics Design</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Design Services</h3>
+                <a href="../graphics-design.html">Logo Design</a>
+                <a href="../graphics-design.html">Branding</a>
+                <a href="../graphics-design.html">Illustrations</a>
+                <a href="../graphics-design.html">Packaging</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Development Services</h3>
+                <a href="../web-development.html">Web Design</a>
+                <a href="../web-development.html">Web Apps</a>
+                <a href="../web-development.html">Responsive Sites</a>
+                <a href="../web-development.html">UI/UX Design</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="../contact.html">Contact Me</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Yona Miti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Book carousel state
+        const carouselStates = {
+            1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0
+        };
+
+        function nextPage(carouselId) {
+            const carousel = document.getElementById(`carousel${carouselId}`);
+            const pages = carousel.querySelectorAll('.carousel-page');
+            const counter = document.getElementById(`counter${carouselId}`);
+            
+            // Remove active class from all pages
+            pages.forEach(page => {
+                page.classList.remove('active', 'prev');
+            });
+
+            // Update state
+            carouselStates[carouselId] = (carouselStates[carouselId] + 1) % pages.length;
+
+            // Add active class to current page and set prev for previous
+            pages[carouselStates[carouselId]].classList.add('active');
+            const prevIndex = (carouselStates[carouselId] - 1 + pages.length) % pages.length;
+            pages[prevIndex].classList.add('prev');
+
+            // Update counter
+            counter.textContent = carouselStates[carouselId] + 1;
+        }
+
+        function prevPage(carouselId) {
+            const carousel = document.getElementById(`carousel${carouselId}`);
+            const pages = carousel.querySelectorAll('.carousel-page');
+            const counter = document.getElementById(`counter${carouselId}`);
+            
+            // Remove active class from all pages
+            pages.forEach(page => {
+                page.classList.remove('active', 'prev');
+            });
+
+            // Update state
+            carouselStates[carouselId] = (carouselStates[carouselId] - 1 + pages.length) % pages.length;
+
+            // Add active class to current page and set prev for next (reverse direction)
+            pages[carouselStates[carouselId]].classList.add('active');
+            const nextIndex = (carouselStates[carouselId] + 1) % pages.length;
+            pages[nextIndex].classList.add('prev');
+
+            // Update counter
+            counter.textContent = carouselStates[carouselId] + 1;
+        }
+    </script>
+</body>
+</html>

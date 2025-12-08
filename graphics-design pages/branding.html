@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branding & Identity Portfolio - Yona Miti</title>
+    <link rel="stylesheet" href="../css/branding.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">YM</a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html#work">Explore My Work</a>
+                    <div class="dropdown-menu">
+                        <a href="../graphics-design.html">
+                            <span class="icon">🎨</span>
+                            <span class="text">
+                                <span class="title">Graphics Design</span>
+                                <span class="description">Logos, branding, visuals</span>
+                            </span>
+                        </a>
+                        <a href="../web-development.html">
+                            <span class="icon">💻</span>
+                            <span class="text">
+                                <span class="title">Web Development</span>
+                                <span class="description">Websites, apps, UI/UX</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact.html">Contact Me</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Branding & Identity</h1>
+            <p>Complete brand development and visual identity systems</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-intro">
+            <h2>Featured Brand Projects</h2>
+            <p>Comprehensive branding solutions from strategy to visual identity implementation</p>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid">
+            <!-- Project 1: Meridian Global -->
+            <div class="portfolio-item">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel1">
+                        <div class="carousel-slide active">
+                            <span class="carousel-slide-icon">🌍</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">📊</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">🎯</span>
+                        </div>
+                    </div>
+                    <button class="carousel-nav carousel-prev" onclick="moveSlide(event, -1)">❮</button>
+                    <button class="carousel-nav carousel-next" onclick="moveSlide(event, 1)">❯</button>
+                    <div class="carousel-indicators" id="indicators1"></div>
+                    <div class="carousel-counter"><span class="current-slide">1</span>/3</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-company">Meridian Global</div>
+                    <h3 class="portfolio-title">Global Consulting Brand Identity</h3>
+                    <p class="portfolio-description">Complete brand overhaul for an international consulting firm specializing in strategic business transformation. Developed a comprehensive brand identity system including logo evolution, color palette with sophisticated gradients, custom typography hierarchy, and detailed brand guidelines spanning 50+ pages. The identity conveys trust, innovation, and global reach through geometric patterns inspired by world maps and compass navigation.</p>
+                </div>
+            </div>
+
+            <!-- Project 2: EcoFlow Energy -->
+            <div class="portfolio-item">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel2">
+                        <div class="carousel-slide active">
+                            <span class="carousel-slide-icon">⚡</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">🌱</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">♻️</span>
+                        </div>
+                    </div>
+                    <button class="carousel-nav carousel-prev" onclick="moveSlide(event, -1)">❮</button>
+                    <button class="carousel-nav carousel-next" onclick="moveSlide(event, 1)">❯</button>
+                    <div class="carousel-indicators" id="indicators2"></div>
+                    <div class="carousel-counter"><span class="current-slide">1</span>/3</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-company">EcoFlow Energy</div>
+                    <h3 class="portfolio-title">Renewable Energy Brand System</h3>
+                    <p class="portfolio-description">Full brand identity development for a renewable energy startup focused on sustainable power solutions. Created a dynamic visual identity that balances environmental consciousness with technological innovation through flowing wave motifs and vibrant green-to-gold gradients. Designed comprehensive brand guidelines covering logo variations, iconography system, photography style, and motion design principles for all consumer touchpoints.</p>
+                </div>
+            </div>
+
+            <!-- Project 3: Luxe Haven Hotels -->
+            <div class="portfolio-item">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel3">
+                        <div class="carousel-slide active">
+                            <span class="carousel-slide-icon">✨</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">🏨</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">💎</span>
+                        </div>
+                    </div>
+                    <button class="carousel-nav carousel-prev" onclick="moveSlide(event, -1)">❮</button>
+                    <button class="carousel-nav carousel-next" onclick="moveSlide(event, 1)">❯</button>
+                    <div class="carousel-indicators" id="indicators3"></div>
+                    <div class="carousel-counter"><span class="current-slide">1</span>/3</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-company">Luxe Haven Hotels</div>
+                    <h3 class="portfolio-title">Luxury Hospitality Branding</h3>
+                    <p class="portfolio-description">Comprehensive branding for an ultra-premium hotel chain with properties across major global destinations. Developed elegant brand identity system emphasizing luxury, exclusivity, and personalized guest experiences through refined typography, sophisticated color palette of deep navy, gold, and cream, and custom iconography reflecting architectural elements. Created brand guidelines addressing every hospitality touchpoint from room amenities to concierge stationery.</p>
+                </div>
+            </div>
+
+            <!-- Project 4: TechFlow Innovations -->
+            <div class="portfolio-item">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel4">
+                        <div class="carousel-slide active">
+                            <span class="carousel-slide-icon">💡</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">🚀</span>
+                        </div>
+                        <div class="carousel-slide">
+                            <span class="carousel-slide-icon">⚙️</span>
+                        </div>
+                    </div>
+                    <button class="carousel-nav carousel-prev" onclick="moveSlide(event, -1)">❮</button>
+                    <button class="carousel-nav carousel-next" onclick="moveSlide(event, 1)">❯</button>
+                    <div class="carousel-indicators" id="indicators4"></div>
+                    <div class="carousel-counter"><span class="current-slide">1</span>/3</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-company">TechFlow Innovations</div>
+                    <h3 class="portfolio-title">Tech Startup Brand Identity</h3>
+                    <p class="portfolio-description">Strategic brand development for a cutting-edge technology startup disrupting the SaaS industry with innovative solutions. Created vibrant, modern brand identity combining bold neon colors with minimalist design principles, reflecting the company's innovative spirit and approachable technology philosophy. Developed comprehensive brand system including dynamic logo with animation guidelines, modular icon library, photography direction for human-centric imagery, and detailed brand voice guidelines.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="../graphics-design.html">← Back to Graphics Design</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Design Services</h3>
+                <a href="../graphics-design.html">Logo Design</a>
+                <a href="../graphics-design.html">Branding</a>
+                <a href="../graphics-design.html">Illustrations</a>
+                <a href="../graphics-design.html">Packaging</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Development Services</h3>
+                <a href="../web-development.html">Web Design</a>
+                <a href="../web-development.html">Web Apps</a>
+                <a href="../web-development.html">Responsive Sites</a>
+                <a href="../web-development.html">UI/UX Design</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="../contact.html">Contact Me</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Yona Miti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize carousels
+        function initializeCarousels() {
+            const carousels = ['carousel1', 'carousel2', 'carousel3', 'carousel4'];
+            carousels.forEach((carouselId, index) => {
+                const carousel = document.getElementById(carouselId);
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                const indicatorsContainer = document.getElementById('indicators' + (index + 1));
+                
+                // Create indicators
+                slides.forEach((slide, slideIndex) => {
+                    const indicator = document.createElement('div');
+                    indicator.className = 'carousel-indicator' + (slideIndex === 0 ? ' active' : '');
+                    indicator.onclick = () => goToSlide(carouselId, slideIndex);
+                    indicatorsContainer.appendChild(indicator);
+                });
+            });
+        }
+
+        function moveSlide(event, direction) {
+            const carousel = event.target.closest('.carousel-container').querySelector('.carousel-slides');
+            const carouselId = carousel.id;
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const activeSlide = carousel.querySelector('.carousel-slide.active');
+            const activeIndex = Array.from(slides).indexOf(activeSlide);
+            let newIndex = activeIndex + direction;
+            
+            // Loop around
+            if (newIndex >= slides.length) newIndex = 0;
+            if (newIndex < 0) newIndex = slides.length - 1;
+            
+            goToSlide(carouselId, newIndex);
+        }
+
+        function goToSlide(carouselId, slideIndex) {
+            const carousel = document.getElementById(carouselId);
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            
+            // Remove active from all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Add active to new slide
+            slides[slideIndex].classList.add('active');
+            
+            // Update indicators
+            const carouselNum = carouselId.replace('carousel', '');
+            const indicators = document.querySelectorAll('#indicators' + carouselNum + ' .carousel-indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove('active');
+                if (index === slideIndex) indicator.classList.add('active');
+            });
+            
+            // Update counter
+            const counter = carousel.parentElement.querySelector('.carousel-counter .current-slide');
+            counter.textContent = slideIndex + 1;
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', initializeCarousels);
+    </script>
+</body>
+</html>

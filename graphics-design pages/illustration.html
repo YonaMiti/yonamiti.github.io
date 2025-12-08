@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illustrations Portfolio - Yona Miti</title>
+    <link rel="stylesheet" href="../css/illustration.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">YM</a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html#work">Explore My Work</a>
+                    <div class="dropdown-menu">
+                        <a href="../graphics-design.html">
+                            <span class="icon">🎨</span>
+                            <span class="text">
+                                <span class="title">Graphics Design</span>
+                                <span class="description">Logos, branding, visuals</span>
+                            </span>
+                        </a>
+                        <a href="../web-development.html">
+                            <span class="icon">💻</span>
+                            <span class="text">
+                                <span class="title">Web Development</span>
+                                <span class="description">Websites, apps, UI/UX</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact.html">Contact Me</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Illustrations</h1>
+            <p>Custom digital illustrations and artistic designs</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-intro">
+            <h2>Illustration Gallery</h2>
+            <p>A diverse collection of custom illustrations for various projects and clients</p>
+        </div>
+
+        <!-- Illustrations Grid - 6 items, 3 per row -->
+        <div class="illustrations-grid">
+            <!-- Illustration 1: Character Design -->
+            <div class="illustration-item" onclick="openLightbox('👤', 'Fantasy Characters & Portraits', 'Character Design')">
+                <div class="illustration-image">
+                    <div class="illustration-icon">👤</div>
+                </div>
+                <div class="illustration-content">
+                    <div class="illustration-category">Character Design</div>
+                    <div class="illustration-title">Fantasy Characters & Portraits</div>
+                </div>
+            </div>
+
+            <!-- Illustration 2: Landscape Art -->
+            <div class="illustration-item" onclick="openLightbox('🏔️', 'Nature & Scenic Illustrations', 'Landscapes')">
+                <div class="illustration-image">
+                    <div class="illustration-icon">🏔️</div>
+                </div>
+                <div class="illustration-content">
+                    <div class="illustration-category">Landscapes</div>
+                    <div class="illustration-title">Nature & Scenic Illustrations</div>
+                </div>
+            </div>
+
+            <!-- Illustration 3: Botanical -->
+            <div class="illustration-item" onclick="openLightbox('🌸', 'Flora & Plant Designs', 'Botanical')">
+                <div class="illustration-image">
+                    <div class="illustration-icon">🌸</div>
+                </div>
+                <div class="illustration-content">
+                    <div class="illustration-category">Botanical</div>
+                    <div class="illustration-title">Flora & Plant Designs</div>
+                </div>
+            </div>
+
+            <!-- Illustration 4: Wildlife -->
+            <div class="illustration-item" onclick="openLightbox('🦋', 'Animal & Creature Art', 'Wildlife')">
+                <div class="illustration-image">
+                    <div class="illustration-icon">🦋</div>
+                </div>
+                <div class="illustration-content">
+                    <div class="illustration-category">Wildlife</div>
+                    <div class="illustration-title">Animal & Creature Art</div>
+                </div>
+            </div>
+
+            <!-- Illustration 5: Abstract -->
+            <div class="illustration-item" onclick="openLightbox('✨', 'Modern Abstract Artwork', 'Abstract')">
+                <div class="illustration-image">
+                    <div class="illustration-icon">✨</div>
+                </div>
+                <div class="illustration-content">
+                    <div class="illustration-category">Abstract</div>
+                    <div class="illustration-title">Modern Abstract Artwork</div>
+                </div>
+            </div>
+
+            <!-- Illustration 6: Digital Painting -->
+            <div class="illustration-item" onclick="openLightbox('🎭', 'Portrait Series & Expressions', 'Digital Painting')">
+                <div class="illustration-image">
+                    <div class="illustration-icon">🎭</div>
+                </div>
+                <div class="illustration-content">
+                    <div class="illustration-category">Digital Painting</div>
+                    <div class="illustration-title">Portrait Series & Expressions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="../graphics-design.html">← Back to Graphics Design</a>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <div class="lightbox-image">
+                <div class="lightbox-icon" id="lightboxIcon"></div>
+            </div>
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-category" id="lightboxCategory"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Design Services</h3>
+                <a href="../graphics-design.html">Logo Design</a>
+                <a href="../graphics-design.html">Branding</a>
+                <a href="../graphics-design.html">Illustrations</a>
+                <a href="../graphics-design.html">Packaging</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Development Services</h3>
+                <a href="../web-development.html">Web Design</a>
+                <a href="../web-development.html">Web Apps</a>
+                <a href="../web-development.html">Responsive Sites</a>
+                <a href="../web-development.html">UI/UX Design</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="../contact.html">Contact Me</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Yona Miti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lightbox functionality
+        function openLightbox(icon, title, category) {
+            const modal = document.getElementById('lightboxModal');
+            const lightboxIcon = document.getElementById('lightboxIcon');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxCategory = document.getElementById('lightboxCategory');
+
+            lightboxIcon.textContent = icon;
+            lightboxTitle.textContent = title;
+            lightboxCategory.textContent = category;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            // If clicking on the close button or the dark background
+            if (!event || event.target.id === 'lightboxModal' || event.target.classList.contains('lightbox-close')) {
+                const modal = document.getElementById('lightboxModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close lightbox when pressing ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

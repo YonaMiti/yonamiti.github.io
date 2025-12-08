@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Design Portfolio - Yona Miti</title>
+    <link rel="stylesheet" href="../css/static-design.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">YM</a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html#work">Explore My Work</a>
+                    <div class="dropdown-menu">
+                        <a href="../graphics-design.html">
+                            <span class="icon">🎨</span>
+                            <span class="text">
+                                <span class="title">Graphics Design</span>
+                                <span class="description">Logos, branding, visuals</span>
+                            </span>
+                        </a>
+                        <a href="../web-development.html">
+                            <span class="icon">💻</span>
+                            <span class="text">
+                                <span class="title">Web Development</span>
+                                <span class="description">Websites, apps, UI/UX</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact.html">Contact Me</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Static Design</h1>
+            <p>Print and digital design for posters, flyers, and packaging</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-intro">
+            <h2>Static Design Gallery</h2>
+            <p>A comprehensive collection of print and digital design projects</p>
+        </div>
+
+        <!-- Static Design Grid - 12 items, 3 per row -->
+        <div class="static-grid">
+            <!-- Item 1: Poster Design -->
+            <div class="static-item" onclick="openLightbox('🎨', 'Event Posters & Flyers', 'Poster Design')">
+                <div class="static-image">
+                    <div class="static-icon">🎨</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Poster Design</div>
+                    <div class="static-title">Event Posters & Flyers</div>
+                </div>
+            </div>
+
+            <!-- Item 2: Packaging Design -->
+            <div class="static-item" onclick="openLightbox('📦', 'Product Packaging', 'Packaging')">
+                <div class="static-image">
+                    <div class="static-icon">📦</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Packaging</div>
+                    <div class="static-title">Product Packaging</div>
+                </div>
+            </div>
+
+            <!-- Item 3: Brochure Design -->
+            <div class="static-item" onclick="openLightbox('📄', 'Company Brochures', 'Brochure')">
+                <div class="static-image">
+                    <div class="static-icon">📄</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Brochure</div>
+                    <div class="static-title">Company Brochures</div>
+                </div>
+            </div>
+
+            <!-- Item 4: Business Card Design -->
+            <div class="static-item" onclick="openLightbox('💼', 'Business Card Design', 'Business Cards')">
+                <div class="static-image">
+                    <div class="static-icon">💼</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Business Cards</div>
+                    <div class="static-title">Business Card Design</div>
+                </div>
+            </div>
+
+            <!-- Item 5: Label Design -->
+            <div class="static-item" onclick="openLightbox('🏷️', 'Product Labels', 'Labels')">
+                <div class="static-image">
+                    <div class="static-icon">🏷️</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Labels</div>
+                    <div class="static-title">Product Labels</div>
+                </div>
+            </div>
+
+            <!-- Item 6: Banner Design -->
+            <div class="static-item" onclick="openLightbox('🎭', 'Web & Print Banners', 'Banners')">
+                <div class="static-image">
+                    <div class="static-icon">🎭</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Banners</div>
+                    <div class="static-title">Web & Print Banners</div>
+                </div>
+            </div>
+
+            <!-- Item 7: Magazine Design -->
+            <div class="static-item" onclick="openLightbox('📰', 'Magazine Layouts', 'Magazine')">
+                <div class="static-image">
+                    <div class="static-icon">📰</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Magazine</div>
+                    <div class="static-title">Magazine Layouts</div>
+                </div>
+            </div>
+
+            <!-- Item 8: Menu Design -->
+            <div class="static-item" onclick="openLightbox('🍽️', 'Restaurant Menus', 'Menu Design')">
+                <div class="static-image">
+                    <div class="static-icon">🍽️</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Menu Design</div>
+                    <div class="static-title">Restaurant Menus</div>
+                </div>
+            </div>
+
+            <!-- Item 9: Certificate Design -->
+            <div class="static-item" onclick="openLightbox('🏆', 'Certificates & Awards', 'Certificates')">
+                <div class="static-image">
+                    <div class="static-icon">🏆</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Certificates</div>
+                    <div class="static-title">Certificates & Awards</div>
+                </div>
+            </div>
+
+            <!-- Item 10: Stationery Design -->
+            <div class="static-item" onclick="openLightbox('✉️', 'Letterheads & Envelopes', 'Stationery')">
+                <div class="static-image">
+                    <div class="static-icon">✉️</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Stationery</div>
+                    <div class="static-title">Letterheads & Envelopes</div>
+                </div>
+            </div>
+
+            <!-- Item 11: Infographic Design -->
+            <div class="static-item" onclick="openLightbox('📊', 'Data Infographics', 'Infographics')">
+                <div class="static-image">
+                    <div class="static-icon">📊</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Infographics</div>
+                    <div class="static-title">Data Infographics</div>
+                </div>
+            </div>
+
+            <!-- Item 12: Social Media Graphics -->
+            <div class="static-item" onclick="openLightbox('📱', 'Social Media Posts', 'Social Media')">
+                <div class="static-image">
+                    <div class="static-icon">📱</div>
+                </div>
+                <div class="static-content">
+                    <div class="static-category">Social Media</div>
+                    <div class="static-title">Social Media Posts</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="../graphics-design.html">← Back to Graphics Design</a>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <div class="lightbox-image">
+                <div class="lightbox-icon" id="lightboxIcon"></div>
+            </div>
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-category" id="lightboxCategory"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Design Services</h3>
+                <a href="../graphics-design.html">Logo Design</a>
+                <a href="../graphics-design.html">Branding</a>
+                <a href="../graphics-design.html">Illustrations</a>
+                <a href="../graphics-design.html">Packaging</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Development Services</h3>
+                <a href="../web-development.html">Web Design</a>
+                <a href="../web-development.html">Web Apps</a>
+                <a href="../web-development.html">Responsive Sites</a>
+                <a href="../web-development.html">UI/UX Design</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="../contact.html">Contact Me</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Yona Miti. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lightbox functionality
+        function openLightbox(icon, title, category) {
+            const modal = document.getElementById('lightboxModal');
+            const lightboxIcon = document.getElementById('lightboxIcon');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxCategory = document.getElementById('lightboxCategory');
+
+            lightboxIcon.textContent = icon;
+            lightboxTitle.textContent = title;
+            lightboxCategory.textContent = category;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            // If clicking on the close button or the dark background
+            if (!event || event.target.id === 'lightboxModal' || event.target.classList.contains('lightbox-close')) {
+                const modal = document.getElementById('lightboxModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close lightbox when pressing ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
